@@ -84,12 +84,21 @@ public class Person implements InterfaceOne  {
 		    		return;
 		    	}
 	    }
-	        
+	 public void deleteContact()  {
+	    	System.out.println("Enter name of person whose contact you want to delete");
+				String name = sc.next();
+		    	if(detailsBook.containsKey(name)) {
+		    		detailsBook.remove(name);
+		    	}
+		    	else {
+		    		System.out.println("Contact is not present in book");
+		    		return;
+		    	}
+	    }
 	    public void display() {
 	        System.out.println("Created contact list is");
 	        for(Map.Entry m : detailsBook.entrySet()) {
 	        	System.out.println(m.getKey()+"--> "+m.getValue());
 	        }
 	    }
-	   
 	}
