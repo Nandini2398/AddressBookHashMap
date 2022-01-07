@@ -9,7 +9,7 @@ public class Person implements InterfaceOne  {
 	import java.util.Map;
 	import java.util.Scanner;
 
-	public class Person implements InterfaceOne  {
+	public class Person implements InterFaceOne  {
 
 	    static Scanner sc = new Scanner(System.in);
 	    static String firstName,lastName,address,state,email,city;
