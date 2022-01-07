@@ -1,7 +1,8 @@
 package main.java.com.bridgelabz.AddressBookHashMap;
 
-public interface InterfaceOne {
-	public interface InterfaceOne {
-		void createContact();
-		void display();
+public interface InterFaceOne {
+	void createContact();
+	void addContact();
+	void editContact();
+	void display();
 }

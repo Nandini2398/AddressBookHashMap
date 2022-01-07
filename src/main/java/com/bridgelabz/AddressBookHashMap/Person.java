@@ -56,6 +56,35 @@ public class Person implements InterfaceOne  {
 	    	}
 	    }
 	        
+	    
+	 public void editContact()  {
+	    	System.out.println("Enter name of person whose contact you want to edit");
+				String name = sc.next();
+		    	if(detailsBook.containsKey(name)) {
+		    		System.out.println("Enter First Name :");
+		        	String fName = sc.next();
+		        	System.out.println("Enter Last Name :");
+		        	String lName = sc.next();
+		        	System.out.println("Enter Address :");
+		        	String address = sc.next();
+		        	System.out.println("Enter City :");
+		        	String city = sc.next();
+		        	System.out.println("Enter State :");
+		        	String state = sc.next();
+		        	System.out.println("Enter Zip :");
+		        	int zip = sc.nextInt();
+		        	System.out.println("Enter Phone Number :");
+		        	long number = sc.nextLong();
+		        	System.out.println("Enter Email :");
+		        	String mail = sc.next();
+		    		detailsBook.put(name,new Contact(fName, lName, address, city, state, zip, number, mail));
+		    	}
+		    	else {
+		    		System.out.println("Contact is not present in book");
+		    		return;
+		    	}
+	    }
+	        
 	    public void display() {
 	        System.out.println("Created contact list is");
 	        for(Map.Entry m : detailsBook.entrySet()) {
