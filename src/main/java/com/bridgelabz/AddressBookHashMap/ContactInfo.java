@@ -3,7 +3,7 @@ package main.java.com.bridgelabz.AddressBookHashMap;
 import java.util.Scanner;
 
 public class ContactInfo {
-	    Scanner sc = new Scanner(System.in);
+	 Scanner sc = new Scanner(System.in);
 	    public void info() {
 			System.out.println("Enter Last Name :");
 			Person.lastName = sc.next();
