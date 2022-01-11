@@ -5,6 +5,8 @@ import java.util.Scanner;
 public class ContactInfo {
 	 Scanner sc = new Scanner(System.in);
 	    public void info() {
+	    	System.out.println("Enter First Name :");
+			Person.firstName = sc.next();
 			System.out.println("Enter Last Name :");
 			Person.lastName = sc.next();
 			System.out.println("Enter Address :");

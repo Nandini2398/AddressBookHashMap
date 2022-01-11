@@ -9,4 +9,5 @@ public interface InterFaceOne {
 	void displayBook();
 	void addToBook();
 	void operation();
+	void searchPerson();
 }
