@@ -1,12 +1,13 @@
 package main.java.com.bridgelabz.AddressBookHashMap;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.HashMap;
+import java.util.stream.Collectors;
 import java.util.Map.Entry;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
-public class Person implements InterfaceOne  {
+
+public class Person implements InterFaceOne  {
     static Scanner sc = new Scanner(System.in);
     static String firstName,lastName,address,state,email,city;
     static int zip;
@@ -149,20 +150,22 @@ public class Person implements InterfaceOne  {
 	    	}
     	}
     }
- public void viewByCity() {
-	Map<String,Contact> detailsByCity =personByCity.entrySet().stream().filter(e->e.getKey().equals("Pune")).collect(Collectors.toMap(e->e.getKey(), e->e.getValue()));
-	if(detailsByCity!=null) {
-    System.out.println(detailsByCity);
-	}else {
-		System.out.println("Person having particular city is not present");
-	}
-   }
-   public void viewByState() {
+    public void viewByCity() {
+		Map<String,Contact> detailsByCity =personByCity.entrySet().stream().filter(e->e.getKey().equals("Pune")).collect(Collectors.toMap(e->e.getKey(), e->e.getValue()));
+		if(detailsByCity!=null) {
+		    System.out.println(detailsByCity);
+		    System.out.println("Number of person belonging to city is: "+detailsByCity.size());
+		}else {
+			System.out.println("Person having particular city is not present");
+		}
+    }
+    public void viewByState() {
 		Map<String,Contact> detailsByState =personByState.entrySet().stream().filter(e->e.getKey().equals("Karnataka")).collect(Collectors.toMap(e->e.getKey(), e->e.getValue()));
 		if(detailsByState!=null) {
-	    System.out.println(detailsByState);
+		    System.out.println(detailsByState);
+		    System.out.println("Number of person belonging to state is: "+detailsByState.size());
 		}else {
 			System.out.println("Person with particular state is not present");
 		}
-	   }
+	 }
 }
