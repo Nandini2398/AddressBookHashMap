@@ -3,7 +3,6 @@ package com.bridgelabz.AddressBook_Collections;
 import java.util.Scanner;
 
 public class ContactInfo {
-	
 	    Scanner sc = new Scanner(System.in);
 	    public void info() {
 	    	System.out.println("Enter First Name :");
