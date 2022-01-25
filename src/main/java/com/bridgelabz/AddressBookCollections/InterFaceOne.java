@@ -15,4 +15,8 @@ public interface InterFaceOne {
 	void addContactByState();
 	void viewByState();
 	void sortAddressBook();
+	void sortByCity();
+	void sortByState();
+	void writeToAddressBookFile();
+	public List<String> readDataFromFile();
 }
