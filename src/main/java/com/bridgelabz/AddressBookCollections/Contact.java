@@ -84,12 +84,15 @@ public class Contact {
 	public void setCity(String city) {
 		this.city = city;
 	}
+	
 	public void setState(String state) {
 		this.state = state;
 	}
+	
 	public void setZip(int zip) {
 		this.zip = zip;
 	}
+	
 	@Override
 	public String toString() {
 		
