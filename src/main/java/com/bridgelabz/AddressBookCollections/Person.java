@@ -1,21 +1,16 @@
 package main.java.com.bridgelabz.AddressBookHashMap;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Scanner;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Person implements InterFaceOne  {
@@ -114,11 +109,8 @@ public class Person implements InterFaceOne  {
     public void searchPerson() {
     	System.out.println("Enter person name to search ");
     	String name = sc.next();
-    	for(Map.Entry e : detailsBook.entrySet()) {
-	    	if(detailsBook.get(name).equals(e.getValue())) {
-	    		System.out.println(e.getValue());
-	    	}
-    	}
+		Map<String,Contact> searchedPerson =detailsBook.entrySet().stream().filter(e->e.getKey().equals(name)).collect(Collectors.toMap(e->e.getKey(), e->e.getValue()));
+		System.out.println(searchedPerson);
     }
     public void displayBook() {
     	System.out.println("Address Books are:");
@@ -162,8 +154,10 @@ public class Person implements InterFaceOne  {
     	}
     }
     public void viewByCity() {
-		Map<String,Contact> detailsByCity =personByCity.entrySet().stream().filter(e->e.getKey().equals("Pune")).collect(Collectors.toMap(e->e.getKey(), e->e.getValue()));
-		if(detailsByCity!=null) {
+    	System.out.println("Enter city name to search ");
+    	String cityName = sc.next();
+		Map<String,Contact> detailsByCity =personByCity.entrySet().stream().filter(e->e.getKey().equals(cityName)).collect(Collectors.toMap(e->e.getKey(), e->e.getValue()));
+		if(detailsByCity !=null) {
 		    System.out.println(detailsByCity);
 		    System.out.println("Number of person belonging to city is: "+detailsByCity.size());
 		}else {
@@ -171,7 +165,9 @@ public class Person implements InterFaceOne  {
 		}
     }
     public void viewByState() {
-		Map<String,Contact> detailsByState =personByState.entrySet().stream().filter(e->e.getKey().equals("Karnataka")).collect(Collectors.toMap(e->e.getKey(), e->e.getValue()));
+    	System.out.println("Enter state name to search ");
+    	String stateName = sc.next();
+		Map<String,Contact> detailsByState =personByState.entrySet().stream().filter(e->e.getKey().equals(stateName)).collect(Collectors.toMap(e->e.getKey(), e->e.getValue()));
 		if(detailsByState!=null) {
 		    System.out.println(detailsByState);
 		    System.out.println("Number of person belonging to state is: "+detailsByState.size());
@@ -180,9 +176,66 @@ public class Person implements InterFaceOne  {
 		}
 	 }
     public void sortAddressBook() {
+
 		Map<String,Contact> sortedContact =detailsBook.entrySet().stream()
 				      						.sorted(Map.Entry.comparingByKey()).collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue
 				      							,(oldValue,newValue)->oldValue,LinkedHashMap::new));
-		System.out.println("Sorted Address Book "+sortedContact);
+		System.out.println("Sorted Address Book "+sortedContact.toString());
+		
+	}
+    public void sortByCity() {
+
+		Map<String,Contact> sortedByCity =personByCity.entrySet().stream()
+				      						.sorted(Map.Entry.comparingByKey()).collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue
+				      							,(oldValue,newValue)->oldValue,LinkedHashMap::new));
+		System.out.println("Sorted Address Book "+sortedByCity);
+		
+	}
+    public void sortByState() {
+
+		Map<String,Contact> sortedByState =personByState.entrySet().stream()
+				      						.sorted(Map.Entry.comparingByKey()).collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue
+				      							,(oldValue,newValue)->oldValue,LinkedHashMap::new));
+		System.out.println("Sorted Address Book "+sortedByState);
+		
+	}
+public void writeToAddressBookFile() {
+		
+		String bookName = "personByCity";
+		String fileName = bookName+".txt";
+		
+		StringBuffer addressBookBuffer = new StringBuffer();
+		personByCity.values().stream().forEach(contact -> {
+			String personDataString = contact.toString().concat("\n");
+			addressBookBuffer.append(personDataString);
+		});
+
+		try {
+			Files.write(Paths.get(fileName), addressBookBuffer.toString().getBytes());
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	public List<String> readDataFromFile() {
+		
+		List<String> addressList = new ArrayList<String>();
+		String bookName ="personByCity";
+		String fileName = bookName+".txt";
+		System.out.println("Reading from : "+fileName+"\n");
+		try {
+			Files.lines(new File(fileName).toPath())
+				.map(line -> line.trim())
+				.forEach(employeeDetails -> {
+					System.out.println(employeeDetails);
+					addressList.add(employeeDetails);
+			});
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
+		return addressList;
 	}
 }
